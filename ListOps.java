@@ -105,6 +105,55 @@ public class ListOps {
         Arrays.stream(arr).max().ifPresent(System.out::println);
     }
 
+        public static  void findFirstAndLast(List<Integer> numbers) {
+        System.out.println("First and last:");
+        System.out.println("First: "+ numbers.getFirst());
+        numbers.stream().findFirst().ifPresent(System.out::println);
+        System.out.println("Last: "+ numbers.getLast());
+        numbers.stream().reduce((first, last) -> last).ifPresent(System.out::println);
+    }
+
+        public static void findMaxAndMin(List<Integer> numbers) {
+        System.out.println("Max :");
+        numbers.stream().max(Integer::compareTo).ifPresent(System.out::println);
+        System.out.println("Min :");
+        numbers.stream().min(Integer::compareTo).ifPresent(System.out::println);
+        List<String> strList = Arrays.asList("a", "b", "c");
+        System.out.println("Max and Min of String list");
+        strList.stream().max(String::compareTo).ifPresent(System.out::println);
+        strList.stream().min(String::compareTo).ifPresent(System.out::println);
+    }
+
+        public static  void findSecondLargest(List<Integer> numbers) {
+        System.out.println("Second largest number: ");
+        numbers.stream().sorted(Collections.reverseOrder()).skip(1).findFirst().ifPresent(System.out::println);
+        System.out.println("Third largest number using stream: ");
+        numbers.stream().sorted(Collections.reverseOrder()).skip(2).findFirst().ifPresent(System.out::println);
+    }
+
+    public static void findSecondSmallestNumber(List<Integer> numbers) {
+        System.out.println("Second smallest number: ");
+       numbers.stream().sorted().skip(1).findFirst().ifPresent(System.out::println);
+       System.out.println("Third smallest number using stream: ");
+       numbers.stream().sorted().skip(2).findFirst().ifPresent(System.out::println);
+    }
+
+      public static  void findMaxAndMinElementInAnArray() {
+        int[] arr = {1,2,3,4,5,6,7,7,9,10,11,12,13,13,15,16,17};
+        System.out.println("Max element:");
+        Arrays.stream(arr).boxed().max(Integer::compareTo).ifPresent(System.out::println);
+        System.out.println("Min element:");
+        Arrays.stream(arr).boxed().min(Integer::compareTo).ifPresent(System.out::println);
+    }
+        public static void sortElementsInALists(List<Integer> numbers) {
+        System.out.println("Sorted List "+numbers.stream().sorted().toList());
+        System.out.println("Sorted List in reverse order "+numbers.stream().sorted(Collections.reverseOrder()).toList());
+        List<String> strList = Arrays.asList("a", "b", "c", "x", "d", "m", "j");
+        System.out.println("sorting String list "+ strList.stream().sorted().toList());
+        System.out.println("sorting String list in reverse order "+strList.stream().sorted(Collections.reverseOrder()).toList());
+
+    }
+
     public static void main(String[] args){
         List<Integer> numList = Arrays.asList(10,4,3,6,78,55,34,35,99,15,91);
         evenNumberList(numList);
@@ -122,5 +171,11 @@ public class ListOps {
         cubicNum(numList);
         sortAnArray();
         maxElementInAnArray();
+        findFirstAndLast(numList);
+        findMaxAndMin(numList);
+        findSecondLargest(numList);
+        findSecondSmallestNumber(numList);
+        findMaxAndMinElementInAnArray(numList);
+        sortElementsInALists(numList);
     }
 }
